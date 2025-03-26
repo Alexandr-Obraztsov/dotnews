@@ -1,4 +1,8 @@
-import { Digest as DigestType } from '@/entities/digest'
+import {
+	convertReceptionDateToText,
+	decodeReceptionDays,
+	Digest as DigestType,
+} from '@/entities/digest'
 import { PATH } from '@/shared/model'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -13,7 +17,10 @@ export const Digest = (digest: DigestType) => {
 				{digest.name}
 			</h2>
 			<span className=' block mt-[8px] text-secondary text-[14px] leading-none'>
-				Every day at 10:00
+				{convertReceptionDateToText(
+					decodeReceptionDays(digest.receptionDaysEncoded),
+					digest.receptionTime
+				)}
 			</span>
 
 			<div className='mt-[16px] flex flex-row'>

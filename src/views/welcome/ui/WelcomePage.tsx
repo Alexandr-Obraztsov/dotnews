@@ -3,7 +3,6 @@
 import { PATH } from '@/shared/model'
 import { Button, Pagination } from '@/shared/ui'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import box from 'public/images/box.png'
 import news from 'public/images/news.png'
@@ -45,23 +44,17 @@ export const WelcomePage = () => {
 	return (
 		<div className='w-full h-screen p-[25px] '>
 			<div className='relative w-full h-full flex flex-col items-center justify-start'>
-				<Link
-					href={PATH.digests}
-					className='absolute top-0 right-0 text-gray-400 text-[14px]'
-				>
-					Skip
-				</Link>
 				<Image
 					src={step.img}
 					alt='image'
 					width={256}
 					height={256}
-					className='size-[256px] mt-[140px]'
+					className='size-[256px]'
 				/>
-				<h1 className='text-primary font-bold text-[30px] mx-auto mt-[48px]'>
+				<h1 className='text-primary font-bold text-xl mx-auto mt-[24px]'>
 					{step.title}
 				</h1>
-				<p className='text-secondary mt-[28px] text-center text-[18px] leading-[18px] h-[100px]'>
+				<p className='text-secondary text-balance mt-[28px] text-center text-base leading-[18px] h-[60px]'>
 					{step.description}
 				</p>
 				<Pagination

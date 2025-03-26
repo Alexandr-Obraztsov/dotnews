@@ -28,8 +28,6 @@ export const MyDigests = () => {
 						<>
 							<LoadingDigest />
 							<LoadingDigest />
-							<LoadingDigest />
-							<LoadingDigest />
 						</>
 					) : (
 						digests?.map(digest => <Digest key={digest.id} {...digest} />)
