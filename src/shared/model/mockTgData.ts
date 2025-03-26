@@ -30,4 +30,9 @@ export const mockTgData = {
 	},
 	viewportHeight: 590,
 	isExpanded: true,
+	BackButton: {
+		hide: () => {},
+		show: () => {},
+		onClick: (callback: () => void) => {},
+	},
 }

@@ -7,10 +7,12 @@ export const Digest = (digest: DigestType) => {
 	return (
 		<Link
 			href={PATH.digest.replace(':id', digest.id)}
-			className='block shrink-0 basis-[150px] grow-[1] bg-foreground p-[25px] border-stroke border rounded-xl'
+			className='block shrink-0 w-[150px] grow-[1] bg-foreground p-[25px] border-stroke border rounded-xl'
 		>
-			<h2 className='text-[18px] font-medium text-primary'>{digest.name}</h2>
-			<span className='mt-[8px] text-secondary text-[14px]'>
+			<h2 className='text-[18px] font-medium text-primary leading-none'>
+				{digest.name}
+			</h2>
+			<span className=' block mt-[8px] text-secondary text-[14px] leading-none'>
 				Every day at 10:00
 			</span>
 

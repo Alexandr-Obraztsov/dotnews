@@ -1,23 +1,25 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useWebApp } from '@/app/hooks/useWebApp'
 import { AddDigestButton } from './add-digest-button/AddDigestButton'
 import { MyDigests } from './my-digests/MyDigests'
 import { RecommendedDigests } from './recommended-digests/RecommendedDigests'
-import { PATH } from '@/shared/model'
+import { useEffect } from 'react'
 
 export const DigestsPage = () => {
-	const router = useRouter()
+	const webApp = useWebApp()
 
-	const handleAddDigest = () => {
-		router.push(PATH.digest.replace(':id', 'new'))
-	}
+	useEffect(() => {
+		if (webApp) {
+			webApp.BackButton.hide()
+		}
+	}, [webApp])
 
 	return (
 		<div className='w-full flex flex-col text-primary p-[27px_16px]'>
 			<MyDigests />
 			<RecommendedDigests />
-			<AddDigestButton onClick={handleAddDigest} />
+			<AddDigestButton />
 		</div>
 	)
 }

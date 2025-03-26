@@ -17,10 +17,13 @@ export const Channel = ({ channel, onClickMore }: Props) => {
 				height={40}
 				className='rounded-full bg-stroke'
 			/>
-			<span className='block text-[16px] ml-3 text-primary'>
+			<span className='block text-[16px] ml-3 text-primary text-nowrap w-0 flex-1 overflow-hidden text-ellipsis'>
 				{channel.title}
 			</span>
-			<button className='ml-auto text-secondary p-3' onClick={onClickMore}>
+			<button
+				className='ml-auto text-secondary p-3 flex-shrink-0'
+				onClick={onClickMore}
+			>
 				<More />
 			</button>
 		</div>

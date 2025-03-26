@@ -35,7 +35,7 @@ export const CreateDigestNameModal = ({ open, close }: Props) => {
 			</div>
 			<label className='flex flex-col gap-[6px] mt-6 text-sm font-medium text-secondary'>
 				Digest Name
-				<Input placeholder='Enter Digest Name' ref={inputRef} autoFocus />
+				<Input placeholder='Enter Digest Name' ref={inputRef} />
 			</label>
 			<Button variant='fulfilled' sx='mt-4 w-full' onClick={handleCreateDigest}>
 				Create Digest

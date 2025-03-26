@@ -1,16 +1,14 @@
+import { PATH } from '@/shared/model'
+import Link from 'next/link'
 import Plus from 'public/icons/plus.svg'
 
-type Props = {
-	onClick?: () => void
-}
-
-export const AddDigestButton = ({ onClick }: Props) => {
+export const AddDigestButton = () => {
 	return (
-		<button
+		<Link
 			className='group bg-accent p-[20px] rounded-full fixed bottom-6 right-6 text-white'
-			onClick={onClick}
+			href={PATH.digest.replace(':id', 'new')}
 		>
 			<Plus />
-		</button>
+		</Link>
 	)
 }

@@ -20,9 +20,14 @@ export const SearchChannelsPage = () => {
 		data: channels,
 		isSuccess: isChannelSuccess,
 		isFetching: isChannelFetching,
-	} = useSearchChannelQuery({
-		name: searchText,
-	})
+	} = useSearchChannelQuery(
+		{
+			name: searchText,
+		},
+		{
+			skip: !searchText,
+		}
+	)
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchText(e.target.value)

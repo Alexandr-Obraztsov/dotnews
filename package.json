@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@reduxjs/toolkit": "^2.6.1",
 		"@twa-dev/sdk": "^8.0.2",
+		"@twa-dev/types": "^8.0.2",
 		"axios": "^1.7.9",
 		"clsx": "^2.1.1",
 		"next": "15.1.7",

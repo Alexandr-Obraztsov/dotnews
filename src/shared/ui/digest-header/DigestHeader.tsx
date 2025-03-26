@@ -1,11 +1,12 @@
 import Edit from 'public/icons/edit.svg'
-import Back from 'public/icons/back.svg'
 import { useRouter } from 'next/navigation'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Digest } from '@/entities/digest'
 import { Nullable } from '@/shared/model'
 import { useUpdateDigestMutation } from '@/entities/digest/api/digestsApi'
 import { CreateDigestNameModal } from '@/entities/digest/ui/create-digest-name-modal/CreateDigestNameModal'
+import { useWebApp } from '@/app/hooks/useWebApp'
+
 type Props = {
 	digest: Nullable<Digest>
 	isLoading: boolean
@@ -19,10 +20,7 @@ export const DigestHeader = ({ digest, isLoading }: Props) => {
 	const inputRef = useRef<HTMLInputElement>(null)
 
 	const router = useRouter()
-
-	const handleBack = () => {
-		router.back()
-	}
+	const webApp = useWebApp()
 
 	const handleClickEdit = () => {
 		if (digest) setIsTitleEditing(true)
@@ -44,25 +42,30 @@ export const DigestHeader = ({ digest, isLoading }: Props) => {
 		setIsTitleEditing(false)
 	}
 
-	return (
-		<header className='w-full bg-foreground text-primary font-semibold text-[24px] leading-6 p-4 flex gap-4 justify-start items-center shadow-sm rounded-lg'>
-			<div
-				onClick={handleBack}
-				className='size-6 shrink-0 flex justify-center items-center'
-			>
-				<Back />
-			</div>
+	const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === 'Enter') handleEditDigestName()
+	}
 
-			<div className='flex-1 flex items-center'>
+	useEffect(() => {
+		if (webApp) {
+			webApp.BackButton.onClick(router.back)
+			webApp.BackButton.show()
+		}
+	}, [webApp])
+
+	return (
+		<header className='w-full bg-foreground text-primary font-semibold text-[24px] leading-normal p-4 flex gap-4 justify-start items-center shadow-sm rounded-lg'>
+			<div className='flex-1 flex items-center text-nowrap overflow-hidden text-ellipsis'>
 				{digest ? (
 					isTitleEditing ? (
 						<input
 							defaultValue={digest.name}
 							ref={inputRef}
 							type='text'
-							className='h-6 outline-none flex-1 w-0 border-b border-stroke'
+							className='outline-none flex-1 w-0 border-b border-stroke text-nowrap'
 							autoFocus
 							onBlur={handleEditDigestName}
+							onKeyUp={handleEnter}
 						/>
 					) : (
 						digest.name
