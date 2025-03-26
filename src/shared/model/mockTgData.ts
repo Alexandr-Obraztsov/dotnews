@@ -33,6 +33,8 @@ export const mockTgData = {
 	BackButton: {
 		hide: () => {},
 		show: () => {},
-		onClick: (callback: () => void) => {},
+		onClick: (callback: () => void) => {
+			
+		},
 	},
 }

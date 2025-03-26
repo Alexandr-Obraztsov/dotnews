@@ -51,7 +51,7 @@ export const DigestHeader = ({ digest, isLoading }: Props) => {
 			webApp.BackButton.onClick(router.back)
 			webApp.BackButton.show()
 		}
-	}, [webApp])
+	}, [webApp, router.back])
 
 	return (
 		<header className='w-full bg-foreground text-primary font-semibold text-[24px] leading-normal p-4 flex gap-4 justify-start items-center shadow-sm rounded-lg'>

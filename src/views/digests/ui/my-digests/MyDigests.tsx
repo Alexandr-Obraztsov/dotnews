@@ -15,7 +15,7 @@ export const MyDigests = () => {
 			digests.forEach(digest => {
 				router.prefetch(PATH.digest.replace(':id', digest.id))
 			})
-	}, [digests])
+	}, [digests, router])
 
 	return (
 		<div>

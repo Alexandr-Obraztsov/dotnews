@@ -27,7 +27,7 @@ export const Modal = ({ children, close, open }: Props) => {
 	useEffect(() => {
 		if (!open && isOpen) closeModal()
 		else if (open && !isOpen) setIsOpen(true)
-	}, [open])
+	}, [open, isOpen])
 
 	if (!open && !isOpen) return null
 
