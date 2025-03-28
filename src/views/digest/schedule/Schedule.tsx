@@ -1,7 +1,6 @@
-import { Digest } from '@/entities/digest'
+import { Digest, encodeReceptionDays } from '@/entities/digest'
 import { useUpdateDigestMutation } from '@/entities/digest/api/digestsApi'
 import { decodeReceptionDays } from '@/entities/digest/lib/decodeReceptionDays'
-import { encodeReceptionDays } from '@/entities/digest/lib/encodeReceptionDays'
 import { cn } from '@/shared/lib'
 import { Nullable } from '@/shared/model'
 import { Modal } from '@/shared/ui'
@@ -17,6 +16,8 @@ export const Schedule = ({ digest }: Props) => {
 
 	const [receptionDays, setReceptionDays] = useState(Array(7).fill(false))
 
+	const [timer, setTimer] = useState<NodeJS.Timeout>()
+
 	const [updateDigest] = useUpdateDigestMutation()
 
 	const handleClickDeliveryTime = () => {
@@ -31,10 +32,15 @@ export const Schedule = ({ digest }: Props) => {
 		const newReceptionDays = [...receptionDays]
 		newReceptionDays[index] = !newReceptionDays[index]
 		setReceptionDays(newReceptionDays)
-		updateDigest({
-			digestId: digest!.id,
-			receptionDaysEncoded: encodeReceptionDays(newReceptionDays),
-		})
+
+		clearTimeout(timer)
+		const timeout = setTimeout(() => {
+			updateDigest({
+				digestId: digest!.id,
+				receptionDaysEncoded: encodeReceptionDays(newReceptionDays),
+			})
+		}, 500)
+		setTimer(timeout)
 	}
 
 	useEffect(() => {
