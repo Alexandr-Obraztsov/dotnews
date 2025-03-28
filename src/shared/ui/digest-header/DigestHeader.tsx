@@ -77,7 +77,7 @@ export const DigestHeader = ({ digest, isLoading }: Props) => {
 
 			<div
 				onClick={isTitleEditing ? handleEditDigestName : handleClickEdit}
-				className='size-6 shrink-0 flex justify-center items-center text-accent'
+				className='size-6 shrink-0 flex justify-center items-center text-accent-foreground'
 			>
 				<Edit />
 			</div>

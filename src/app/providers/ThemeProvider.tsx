@@ -8,10 +8,18 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
 
 	useEffect(() => {
 		if (!webApp) return
-		const theme = webApp.colorScheme
-		window.document.body.dataset.theme = theme
-		webApp.onEvent('themeChanged', () => {
+
+		const handleThemeChange = () => {
+			webApp.setHeaderColor(
+				webApp.colorScheme === 'light' ? '#ffffff' : '#1f2937'
+			)
+
 			window.document.body.dataset.theme = webApp.colorScheme
+		}
+
+		handleThemeChange()
+		webApp.onEvent('themeChanged', () => {
+			handleThemeChange()
 		})
 	}, [webApp])
 

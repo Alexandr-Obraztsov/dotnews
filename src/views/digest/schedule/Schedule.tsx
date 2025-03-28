@@ -59,7 +59,7 @@ export const Schedule = ({ digest }: Props) => {
 			>
 				<Clock />
 				<span className='ml-2 text-base'>Delivery Time</span>
-				<span className='ml-auto text-accent font-medium'>9:00</span>
+				<span className='ml-auto text-accent-foreground font-medium'>9:00</span>
 			</div>
 
 			<div className='flex justify-between'>

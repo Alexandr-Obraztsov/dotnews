@@ -18,9 +18,9 @@ export const Button = ({
 		<button
 			className={cn(
 				'text-base font-medium rounded-lg p-4',
-				variant === 'fulfilled' && 'bg-accent text-white',
+				variant === 'fulfilled' && 'bg-accent-foreground text-accent',
 				variant === 'outline' &&
-					'border-2 border-stroke text-accent border-dashed',
+					'border-2 border-stroke text-accent-foreground border-dashed',
 				variant === 'error' &&
 					'border-2 border-red-foreground border-dashed text-red',
 				sx
