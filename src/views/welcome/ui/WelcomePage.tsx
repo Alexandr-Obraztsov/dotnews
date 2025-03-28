@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import box from 'public/images/box.png'
 import news from 'public/images/news.png'
 import phone from 'public/images/phone.png'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 const steps = [
 	{
@@ -32,6 +32,7 @@ const steps = [
 
 export const WelcomePage = () => {
 	const [stepNum, setStepNum] = useState(0)
+	const [startX, setStartX] = useState<number | null>(null)
 	const router = useRouter()
 
 	const handleNext = () => {
@@ -41,8 +42,38 @@ export const WelcomePage = () => {
 
 	const step = steps[stepNum]
 
+	const handleSwipeStart = (event: React.TouchEvent | React.MouseEvent) => {
+		if (event.type === 'touchstart')
+			setStartX((event as React.TouchEvent).touches[0].clientX)
+		else setStartX((event as React.MouseEvent).clientX)
+
+		console.log('start')
+	}
+
+	const handleMove = (event: React.TouchEvent | React.MouseEvent) => {
+		if (startX === null) return
+		let currentX: number
+		if (event.type === 'touchmove')
+			currentX = (event as React.TouchEvent).touches[0].clientX
+		else currentX = (event as React.MouseEvent).clientX
+		const diff = currentX - startX
+
+		console.log(diff)
+		if (Math.abs(diff) > 50) {
+			setStartX(null)
+			if (diff < -50) handleNext()
+			if (diff > 50) setStepNum(prev => (prev > 0 ? prev - 1 : 0))
+		}
+	}
+
 	return (
-		<div className='w-full h-screen p-[25px] '>
+		<div
+			className='w-full h-screen p-[25px] '
+			onTouchStart={handleSwipeStart}
+			onMouseDown={handleSwipeStart}
+			onTouchMove={handleMove}
+			onMouseMove={handleMove}
+		>
 			<div className='relative w-full h-full flex flex-col items-center justify-start'>
 				<Image
 					src={step.img}
@@ -51,10 +82,10 @@ export const WelcomePage = () => {
 					height={256}
 					className='size-[256px]'
 				/>
-				<h1 className='text-primary font-bold text-xl mx-auto mt-[24px]'>
+				<h1 className='text-primary font-bold text-xl mx-auto mt-[24px] select-none'>
 					{step.title}
 				</h1>
-				<p className='text-secondary text-balance mt-[28px] text-center text-base leading-[18px] h-[60px]'>
+				<p className='text-secondary text-balance mt-[28px] text-center text-base leading-[18px] h-[60px] select-none'>
 					{step.description}
 				</p>
 				<Pagination
