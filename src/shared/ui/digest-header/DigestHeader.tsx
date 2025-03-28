@@ -62,7 +62,7 @@ export const DigestHeader = ({ digest, isLoading }: Props) => {
 							defaultValue={digest.name}
 							ref={inputRef}
 							type='text'
-							className='outline-none flex-1 w-0 border-b border-stroke text-nowrap'
+							className='bg-transparent outline-none flex-1 w-0 border-b border-stroke text-nowrap'
 							autoFocus
 							onBlur={handleEditDigestName}
 							onKeyUp={handleEnter}
