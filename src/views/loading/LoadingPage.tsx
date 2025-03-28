@@ -13,6 +13,8 @@ export const LoadingPage = () => {
 
 	useEffect(() => {
 		if (!webApp) return
+		webApp.ready()
+		webApp.expand()
 
 		localStorage.setItem('tgInitData', webApp.initData)
 		login({ timeZoneId: Intl.DateTimeFormat().resolvedOptions().timeZone })
