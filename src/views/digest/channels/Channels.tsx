@@ -26,7 +26,11 @@ export const Channels = ({ digest }: Props) => {
 	const handleClickChannelMore =
 		(channel: ChannelType) => (ev: React.MouseEvent) => {
 			setActiveChannel(channel)
-			setModalPosition({ x: ev.clientX, y: ev.clientY })
+			const position = ev.currentTarget.getBoundingClientRect()
+			setModalPosition({
+				x: position.x + position.width / 2 - 5,
+				y: position.y + position.height / 2,
+			})
 		}
 
 	const handleDeleteChannel = () => {
