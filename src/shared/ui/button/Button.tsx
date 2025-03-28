@@ -22,7 +22,7 @@ export const Button = ({
 				variant === 'outline' &&
 					'border-2 border-stroke text-accent border-dashed',
 				variant === 'error' &&
-					'border-2 border-red-600 border-dashed text-red-600',
+					'border-2 border-red-foreground border-dashed text-red',
 				sx
 			)}
 			{...props}

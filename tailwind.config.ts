@@ -12,6 +12,9 @@ export default {
 				secondary: 'var(--secondary)',
 				accent: 'var(--accent)',
 				['accent-foreground']: 'var(--accent-foreground)',
+
+				red: 'var(--red)',
+				['red-foreground']: 'var(--red-foreground)',
 			},
 			animation: {
 				up: 'animate-up 0.2s ease-out forwards',

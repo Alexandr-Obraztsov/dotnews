@@ -23,10 +23,12 @@ export const ChannelModal = ({ position, close, open, onDelete }: Props) => {
 
 		if (open) {
 			document.addEventListener('mousedown', handleClickOutside)
+			document.addEventListener('scroll', close)
 		}
 
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside)
+			document.addEventListener('scroll', close)
 		}
 	}, [open, close])
 
@@ -35,7 +37,7 @@ export const ChannelModal = ({ position, close, open, onDelete }: Props) => {
 	return (
 		<div
 			ref={modalRef}
-			className='cursor-pointer fixed z-10 text-red-400 -translate-x-full flex items-center gap-2 p-[12px_16px] bg-foreground shadow-md rounded-lg border-stroke border'
+			className='fixed cursor-pointer z-10 text-red -translate-x-full flex items-center gap-2 p-[12px_16px] bg-foreground shadow-md rounded-lg border-stroke border'
 			onClick={onDelete}
 			style={{ left: position.x, top: position.y }}
 		>

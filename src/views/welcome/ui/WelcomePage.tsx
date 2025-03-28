@@ -48,7 +48,7 @@ export const WelcomePage = () => {
 
 	const handleTouchMove = (event: React.TouchEvent) => {
 		if (startX === null) return
-		let currentX = event.touches[0].clientX
+		const currentX = event.touches[0].clientX
 		const diff = currentX - startX
 
 		console.log(diff)

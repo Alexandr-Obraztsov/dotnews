@@ -25,7 +25,9 @@ export const Channel = ({ channel, added, onClick }: Props) => {
 			<button
 				onClick={onClick}
 				className={cn(
-					added ? 'bg-red-400 text-red-700' : 'bg-blue-400 text-accent',
+					added
+						? 'bg-red-foreground text-red'
+						: 'bg-accent-foreground text-accent',
 					'ml-auto min-w-20 p-[8px_16px] !bg-opacity-25 rounded-full font-medium text-sm'
 				)}
 			>
