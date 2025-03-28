@@ -9,7 +9,7 @@ export const LoadingChannel = () => {
 				<Skeleton width={120} />
 			</div>
 			<div className='ml-auto'>
-				<Skeleton width={80} height={35} borderRadius={5999} />
+				<Skeleton width={80} height={35} borderRadius={999} />
 			</div>
 		</div>
 	)

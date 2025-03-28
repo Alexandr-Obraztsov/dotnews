@@ -1,6 +1,8 @@
 import './globals.css'
 import { StoreProvider } from '@/app'
+import { ThemeProvider } from '@/app/providers/ThemeProvider'
 import { Inter } from 'next/font/google'
+import { SkeletonTheme } from 'react-loading-skeleton'
 
 const inter = Inter({
 	variable: '--font-geist-sans',
@@ -13,12 +15,19 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang='en'>
+		<html lang='ru'>
 			<head>
 				<title>My TMA App</title>
 			</head>
 			<body className={`${inter.className} antialiased`}>
-				<StoreProvider>{children}</StoreProvider>
+				<SkeletonTheme
+					baseColor='var(--background)'
+					highlightColor='var(--foreground)'
+				>
+					<ThemeProvider>
+						<StoreProvider>{children}</StoreProvider>
+					</ThemeProvider>
+				</SkeletonTheme>
 			</body>
 		</html>
 	)

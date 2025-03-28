@@ -42,20 +42,13 @@ export const WelcomePage = () => {
 
 	const step = steps[stepNum]
 
-	const handleSwipeStart = (event: React.TouchEvent | React.MouseEvent) => {
-		if (event.type === 'touchstart')
-			setStartX((event as React.TouchEvent).touches[0].clientX)
-		else setStartX((event as React.MouseEvent).clientX)
-
-		console.log('start')
+	const handleTouchStart = (event: React.TouchEvent) => {
+		setStartX(event.touches[0].clientX)
 	}
 
-	const handleMove = (event: React.TouchEvent | React.MouseEvent) => {
+	const handleTouchMove = (event: React.TouchEvent) => {
 		if (startX === null) return
-		let currentX: number
-		if (event.type === 'touchmove')
-			currentX = (event as React.TouchEvent).touches[0].clientX
-		else currentX = (event as React.MouseEvent).clientX
+		let currentX = event.touches[0].clientX
 		const diff = currentX - startX
 
 		console.log(diff)
@@ -69,10 +62,8 @@ export const WelcomePage = () => {
 	return (
 		<div
 			className='w-full h-screen p-[25px] '
-			onTouchStart={handleSwipeStart}
-			onMouseDown={handleSwipeStart}
-			onTouchMove={handleMove}
-			onMouseMove={handleMove}
+			onTouchStart={handleTouchStart}
+			onTouchMove={handleTouchMove}
 		>
 			<div className='relative w-full h-full flex flex-col items-center justify-start'>
 				<Image

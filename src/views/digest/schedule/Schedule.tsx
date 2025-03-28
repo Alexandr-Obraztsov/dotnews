@@ -70,7 +70,7 @@ export const Schedule = ({ digest }: Props) => {
 						className={cn(
 							'size-10 text-sm rounded-full font-medium !bg-opacity-15',
 							receptionDays[i]
-								? 'bg-blue-500 text-accent'
+								? 'bg-accent-foreground text-accent'
 								: 'bg-gray-500 text-secondary'
 						)}
 					>

@@ -18,7 +18,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
 			>
 				{icon}
 				<input
-					className='w-full outline-none text-base'
+					className='w-full outline-none text-base bg-transparent'
 					type='text'
 					placeholder='Search...'
 					ref={ref}

@@ -11,21 +11,23 @@
 	--primary: #1f2937;
 	--secondary: #6b7280;
 	--accent: #2563eb;
-}
-
-@media (prefers-color-scheme: darsk) {
-	:root {
-		--background: #111827;
-		--foreground: #1f2937;
-		--stroke: #374151;
-
-		--primary: #ffffff;
-		--secondary: #9ca3af;
-	}
+	--accent-foreground: #dbeafe;
 }
 
 body {
 	color: var(--foreground);
 	background: var(--background);
 	font-family: Arial, Helvetica, sans-serif;
+}
+
+body[data-theme='dark'] {
+	--background: #111827;
+	--foreground: #1f2937;
+	--stroke: #374151;
+
+	--primary: #ffffff;
+	--secondary: #9ca3af;
+
+	--accent: #60a5fa;
+	--accent-foreground: #1e3a8a;
 }
