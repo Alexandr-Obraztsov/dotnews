@@ -40,7 +40,7 @@ export const SearchChannelsPage = () => {
 				placeholder='Search channels...'
 				onChange={handleChange}
 			/>
-			{isChannelSuccess || isChannelFetching ? (
+			{(isChannelSuccess || isChannelFetching) && searchText ? (
 				<FoundChannels
 					digest={digest}
 					channels={channels}

@@ -13,7 +13,9 @@ export const useWebApp = () => {
 			if (typeof window !== 'undefined') {
 				const WebApp = (await import('@twa-dev/sdk')).default
 
-				setWebApp(WebApp.initData ? WebApp : (mockTgData as WebAppType))
+				setWebApp(
+					WebApp.initData ? WebApp : (mockTgData as unknown as WebAppType)
+				)
 			}
 		}
 
