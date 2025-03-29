@@ -12,7 +12,7 @@ export const Channel = ({ channel, onClickMore }: Props) => {
 		<div className='flex items-center justify-start'>
 			<Image
 				src={channel.imageUrl}
-				alt={channel.title}
+				alt={''}
 				width={40}
 				height={40}
 				className='rounded-full bg-stroke'

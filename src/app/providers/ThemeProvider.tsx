@@ -10,7 +10,7 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
 		if (!webApp) return
 
 		const handleThemeChange = () => {
-			webApp.setHeaderColor(
+			webApp.setBackgroundColor(
 				webApp.colorScheme === 'light' ? '#ffffff' : '#1f2937'
 			)
 

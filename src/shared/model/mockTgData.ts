@@ -40,4 +40,7 @@ export const mockTgData = {
 	ready: () => {},
 
 	onEvent: (eventName: string, callback: () => void) => {},
+	offEvent: (eventName: string, callback: () => void) => {},
+	setHeaderColor(color: string) {},
+	setBackgroundColor(color: string) {},
 }

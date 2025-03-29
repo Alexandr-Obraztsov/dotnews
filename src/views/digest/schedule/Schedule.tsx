@@ -1,3 +1,4 @@
+import { useWebApp } from '@/app/hooks/useWebApp'
 import { Digest, encodeReceptionDays } from '@/entities/digest'
 import { useUpdateDigestMutation } from '@/entities/digest/api/digestsApi'
 import { decodeReceptionDays } from '@/entities/digest/lib/decodeReceptionDays'
@@ -12,6 +13,8 @@ type Props = {
 }
 
 export const Schedule = ({ digest }: Props) => {
+	const webApp = useWebApp()
+
 	const [isDeliveryTimeOpen, setDeliveryTimeOpen] = useState(false)
 
 	const [receptionDays, setReceptionDays] = useState(Array(7).fill(false))
@@ -39,7 +42,7 @@ export const Schedule = ({ digest }: Props) => {
 				digestId: digest!.id,
 				receptionDaysEncoded: encodeReceptionDays(newReceptionDays),
 			})
-		}, 500)
+		}, 3000)
 		setTimer(timeout)
 	}
 
@@ -48,6 +51,22 @@ export const Schedule = ({ digest }: Props) => {
 			setReceptionDays(decodeReceptionDays(digest.receptionDaysEncoded))
 		}
 	}, [digest])
+
+	useEffect(() => {
+		if (webApp && digest) {
+			const callback = () => {
+				if (digest.receptionDaysEncoded === encodeReceptionDays(receptionDays))
+					return
+				clearTimeout(timer)
+				updateDigest({
+					digestId: digest.id,
+					receptionDaysEncoded: encodeReceptionDays(receptionDays),
+				})
+			}
+			webApp.onEvent('backButtonClicked', callback)
+			return () => webApp.offEvent('backButtonClicked', callback)
+		}
+	}, [webApp, timer, digest, receptionDays, updateDigest])
 
 	return (
 		<div className='rounded-lg bg-foreground p-4 flex flex-col gap-4 shadow-sm'>
@@ -59,7 +78,7 @@ export const Schedule = ({ digest }: Props) => {
 			>
 				<Clock />
 				<span className='ml-2 text-base'>Delivery Time</span>
-				<span className='ml-auto text-accent-foreground font-medium'>9:00</span>
+				<span className='ml-auto text-accent font-medium'>9:00</span>
 			</div>
 
 			<div className='flex justify-between'>
@@ -68,13 +87,17 @@ export const Schedule = ({ digest }: Props) => {
 						key={day}
 						onClick={handleClickDay(i)}
 						className={cn(
-							'size-10 text-sm rounded-full font-medium !bg-opacity-15',
-							receptionDays[i]
-								? 'bg-accent-foreground text-accent'
-								: 'bg-gray-500 text-secondary'
+							'relative overflow-hidden size-10 text-sm rounded-full font-medium !bg-opacity-15 bg-gray-500 flex items-center justify-center transition-all',
+							receptionDays[i] ? 'text-accent' : 'text-secondary'
 						)}
 					>
-						{day}
+						<span
+							className={cn(
+								'absolute bg-accent-foreground transition-all z-0',
+								receptionDays[i] ? 'size-full' : 'size-0'
+							)}
+						></span>
+						<span className='z-10 absolute'>{day}</span>
 					</button>
 				))}
 			</div>

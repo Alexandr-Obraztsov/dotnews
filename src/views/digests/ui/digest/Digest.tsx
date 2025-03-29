@@ -11,7 +11,7 @@ export const Digest = (digest: DigestType) => {
 	return (
 		<Link
 			href={PATH.digest.replace(':id', digest.id)}
-			className='block shrink-0 w-[150px] grow-[1] bg-foreground p-[25px] border-stroke border rounded-xl'
+			className='block shrink-0 w-[150px] max-w-[calc(50%-8px)] grow-[1] bg-foreground p-[25px] border-stroke border rounded-xl'
 		>
 			<h2 className='text-[18px] font-medium text-primary leading-none'>
 				{digest.name}

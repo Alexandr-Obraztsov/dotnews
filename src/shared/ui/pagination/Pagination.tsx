@@ -24,7 +24,7 @@ export const Pagination = ({ pagesCount, currentPage, sx, onClick }: Props) => {
 						key={index}
 						onClick={handleClick(index)}
 						className={`w-[8px] h-[8px] rounded-full ${
-							index === currentPage ? 'bg-accent-foreground' : 'bg-stroke'
+							index === currentPage ? 'bg-accent' : 'bg-foreground'
 						}`}
 					></div>
 				))}

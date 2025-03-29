@@ -6,6 +6,7 @@ import { Nullable } from '@/shared/model'
 import { useUpdateDigestMutation } from '@/entities/digest/api/digestsApi'
 import { CreateDigestNameModal } from '@/entities/digest/ui/create-digest-name-modal/CreateDigestNameModal'
 import { useWebApp } from '@/app/hooks/useWebApp'
+import { IconButton } from '../icon-button/IconButton'
 
 type Props = {
 	digest: Nullable<Digest>
@@ -75,12 +76,12 @@ export const DigestHeader = ({ digest, isLoading }: Props) => {
 				)}
 			</div>
 
-			<div
+			<IconButton
 				onClick={isTitleEditing ? handleEditDigestName : handleClickEdit}
-				className='size-6 shrink-0 flex justify-center items-center text-accent-foreground'
+				className='size-8 shrink-0 flex justify-center items-center text-accent'
 			>
 				<Edit />
-			</div>
+			</IconButton>
 			<CreateDigestNameModal open={isModalOpen} close={handleCloseModal} />
 		</header>
 	)
