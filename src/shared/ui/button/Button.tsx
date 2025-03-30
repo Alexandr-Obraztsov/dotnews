@@ -9,6 +9,7 @@ type Props = {
 	sx?: ClassValue
 	href?: string
 	onClick?: () => void
+	effectSx?: ClassValue
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 export const Button = ({
@@ -17,6 +18,7 @@ export const Button = ({
 	sx,
 	href,
 	onClick,
+	effectSx: effectColor,
 	...props
 }: Props) => {
 	const effectRef = useRef<HTMLSpanElement>(null)
@@ -68,7 +70,8 @@ export const Button = ({
 					'absolute rounded-full -translate-x-1/2 -translate-y-1/2 block',
 					variant === 'fulfilled' && 'bg-white',
 					variant === 'outline' && 'bg-gray-300',
-					variant === 'error' && 'bg-rose-300'
+					variant === 'error' && 'bg-rose-300',
+					effectColor
 				)}
 			></span>
 			{children}

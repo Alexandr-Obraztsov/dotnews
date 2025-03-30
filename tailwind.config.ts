@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 export default {
-	darkMode: 'class',
+	darkMode: ['class', 'body[data-theme="dark"] *'],
 	content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
 	theme: {
 		extend: {
@@ -15,7 +15,12 @@ export default {
 				['accent-foreground']: 'var(--accent-foreground)',
 
 				red: 'var(--red)',
-				['red-foreground']: 'var(--red-foreground)',
+				'red-foreground': 'var(--red-foreground)',
+
+				'custom-green': 'var(--green)',
+			},
+			backgroundImage: {
+				linear: 'var(--linear)',
 			},
 			animation: {
 				up: 'animate-up 0.2s ease-out forwards',

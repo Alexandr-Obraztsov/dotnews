@@ -14,8 +14,12 @@
 	--red: #dc2626;
 	--red-foreground: #fecaca;
 
+	--green: #059669;
+
 	--accent: #2563eb;
 	--accent-foreground: #dbeafe;
+
+	--linear: linear-gradient(to left, var(--accent) 0%, #7c3aed 100%);
 }
 
 body {
@@ -35,6 +39,10 @@ body[data-theme='dark'] {
 	--red: #f87171;
 	--red-foreground: #7f1d1d;
 
+	--green: #34d399;
+
 	--accent: #2563eb;
 	--accent-foreground: #1e3a8a;
+
+	--linear: linear-gradient(to left, var(--accent) 0%, #6d28d9 100%);
 }
