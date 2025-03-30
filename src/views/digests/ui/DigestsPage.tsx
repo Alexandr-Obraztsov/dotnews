@@ -5,9 +5,13 @@ import { AddDigestButton } from './add-digest-button/AddDigestButton'
 import { MyDigests } from './my-digests/MyDigests'
 import { RecommendedDigests } from './recommended-digests/RecommendedDigests'
 import { useEffect } from 'react'
+import { useGetDigestsQuery } from '@/entities/digest/api/digestsApi'
+import { EmptyDigest } from './my-digests/empty-digest/EmptyDigest'
 
 export const DigestsPage = () => {
 	const webApp = useWebApp()
+
+	const { data: digests, isLoading } = useGetDigestsQuery()
 
 	useEffect(() => {
 		if (webApp) {
@@ -17,7 +21,11 @@ export const DigestsPage = () => {
 
 	return (
 		<div className='w-full flex flex-col text-primary p-[27px_16px]'>
-			<MyDigests />
+			{digests?.length || isLoading ? (
+				<MyDigests digests={digests} />
+			) : (
+				<EmptyDigest />
+			)}
 			<RecommendedDigests />
 			<AddDigestButton />
 		</div>

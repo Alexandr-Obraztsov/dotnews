@@ -1,14 +1,16 @@
-import { useGetDigestsQuery } from '@/entities/digest/api/digestsApi'
-import { Digest } from '../digest/Digest'
-import { EmptyDigest } from './empty-digest/EmptyDigest'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { PATH } from '@/shared/model'
 import { LoadingDigest } from './loading-digest/LoadingDigest'
+import { Digest as DigestType } from '@/entities/digest/model/types'
+import { Digest } from '../digest/Digest'
 
-export const MyDigests = () => {
+type Props = {
+	digests: DigestType[] | undefined
+}
+
+export const MyDigests = ({ digests }: Props) => {
 	const router = useRouter()
-	const { data: digests, isLoading } = useGetDigestsQuery()
 
 	useEffect(() => {
 		if (digests)
@@ -22,20 +24,16 @@ export const MyDigests = () => {
 			<span className='text-primary text-[18px] font-[500] leading-[18px]'>
 				My Digests
 			</span>
-			{digests?.length || isLoading ? (
-				<div className='flex flex-wrap w-full gap-4 mt-5'>
-					{isLoading ? (
-						<>
-							<LoadingDigest />
-							<LoadingDigest />
-						</>
-					) : (
-						digests?.map(digest => <Digest key={digest.id} {...digest} />)
-					)}
-				</div>
-			) : (
-				<EmptyDigest />
-			)}
+			<div className='flex flex-col gap-4 mt-5'>
+				{digests?.length ? (
+					digests?.map(digest => <Digest key={digest.id} {...digest} />)
+				) : (
+					<>
+						<LoadingDigest />
+						<LoadingDigest />
+					</>
+				)}
+			</div>
 		</div>
 	)
 }

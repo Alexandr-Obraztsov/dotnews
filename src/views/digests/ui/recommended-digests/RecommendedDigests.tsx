@@ -1,7 +1,7 @@
 'use client'
 
 import { Pagination } from '@/shared/ui/pagination/Pagination'
-import Comming from 'public/icons/coming.svg'
+import Digest from 'public/icons/digest.svg'
 import { useState } from 'react'
 
 export const RecommendedDigests = () => {
@@ -13,7 +13,7 @@ export const RecommendedDigests = () => {
 				Recommended Digests
 			</span>
 			<div className='mt-[20px] w-full h-[166px] bg-foreground flex items-center flex-col justify-center text-secondary gap-[20px] rounded-[12px] border border-stroke'>
-				<Comming />
+				<Digest />
 				<span>Coming soon</span>
 			</div>
 			<Pagination
