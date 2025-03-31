@@ -28,10 +28,7 @@ export const MyDigests = ({ digests }: Props) => {
 				{digests?.length ? (
 					digests?.map(digest => <Digest key={digest.id} {...digest} />)
 				) : (
-					<>
-						<LoadingDigest />
-						<LoadingDigest />
-					</>
+					<LoadingDigest />
 				)}
 			</div>
 		</div>
