@@ -87,13 +87,15 @@ export const Schedule = ({ digest }: Props) => {
 						key={day}
 						onClick={handleClickDay(i)}
 						className={cn(
-							'relative overflow-hidden size-10 text-sm rounded-full font-medium !bg-opacity-15 bg-gray-500 flex items-center justify-center transition-all duration-500',
-							receptionDays[i] ? 'text-accent' : 'text-secondary'
+							'relative overflow-hidden size-10 text-sm rounded-full font-medium !bg-opacity-15 bg-gray-500 flex items-center justify-center transition-all duration-300',
+							receptionDays[i]
+								? 'text-accent dark:text-white'
+								: 'text-secondary'
 						)}
 					>
 						<span
 							className={cn(
-								'absolute bg-accent-foreground transition-all rounded-full duration-500 z-0',
+								'absolute bg-accent-foreground dark:bg-accent transition-all rounded-full duration-300 z-0',
 								receptionDays[i] ? 'size-full' : 'size-0'
 							)}
 						></span>

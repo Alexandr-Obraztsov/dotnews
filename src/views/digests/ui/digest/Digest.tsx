@@ -66,9 +66,9 @@ export const Digest = (digest: DigestType) => {
 								src={channel.imageUrl}
 								alt={channel.title}
 								key={channel.id}
-								width={40}
-								height={40}
-								className='ml-[-12px] first:ml-0 block rounded-full size-[40px] bg-background'
+								width={32}
+								height={32}
+								className='border border-foreground ml-[-12px] first:ml-0 block rounded-full size-[40px] bg-background'
 							/>
 						))
 					) : (

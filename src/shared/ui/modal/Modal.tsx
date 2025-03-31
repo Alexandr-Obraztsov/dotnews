@@ -35,11 +35,11 @@ export const Modal = ({ children, close, open }: Props) => {
 		<div
 			className={cn(
 				'fixed inset-0 z-50 bg-black flex flex-col !bg-opacity-50 justify-center p-4',
-				isClosing ? 'animate-fade-out' : 'animate-fade'
+				isClosing && 'animate-fade-out'
 			)}
 			onClick={handleClickOutside}
 		>
-			<div className='bg-background rounded-2xl p-6 transition-transform'>
+			<div className='bg-foreground rounded-2xl p-6 transition-transform'>
 				{children}
 			</div>
 		</div>
