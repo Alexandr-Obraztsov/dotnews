@@ -2,11 +2,11 @@ import { useWebApp } from '@/app/hooks/useWebApp'
 import { Digest, encodeReceptionDays } from '@/entities/digest'
 import { useUpdateDigestMutation } from '@/entities/digest/api/digestsApi'
 import { decodeReceptionDays } from '@/entities/digest/lib/decodeReceptionDays'
-import { cn } from '@/shared/lib'
 import { Nullable } from '@/shared/model'
 import { Modal } from '@/shared/ui'
 import Clock from 'public/icons/clock.svg'
 import { useEffect, useState } from 'react'
+import { ScheduleButton } from './schedule-button/ScheduleButton'
 
 type Props = {
 	digest: Nullable<Digest>
@@ -42,7 +42,7 @@ export const Schedule = ({ digest }: Props) => {
 				digestId: digest!.id,
 				receptionDaysEncoded: encodeReceptionDays(newReceptionDays),
 			})
-		}, 3000)
+		}, 1000)
 		setTimer(timeout)
 	}
 
@@ -83,24 +83,12 @@ export const Schedule = ({ digest }: Props) => {
 
 			<div className='flex justify-between'>
 				{['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, i) => (
-					<button
+					<ScheduleButton
 						key={day}
+						day={day}
+						isActive={receptionDays[i]}
 						onClick={handleClickDay(i)}
-						className={cn(
-							'relative overflow-hidden size-10 text-sm rounded-full font-medium !bg-opacity-15 bg-gray-500 flex items-center justify-center transition-all duration-300',
-							receptionDays[i]
-								? 'text-accent dark:text-white'
-								: 'text-secondary'
-						)}
-					>
-						<span
-							className={cn(
-								'absolute bg-accent-foreground dark:bg-accent transition-all rounded-full duration-300 z-0',
-								receptionDays[i] ? 'size-full' : 'size-0'
-							)}
-						></span>
-						<span className='z-10 absolute'>{day}</span>
-					</button>
+					/>
 				))}
 			</div>
 

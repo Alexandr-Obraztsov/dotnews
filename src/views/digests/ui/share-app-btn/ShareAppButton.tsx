@@ -16,7 +16,7 @@ export const ShareAppButton = () => {
 			<Button
 				variant='fulfilled'
 				sx='ml-auto bg-white text-purple-700 leading-none p-[12px_20px]'
-				effectSx='bg-purple-300'
+				effectSx='bg-purple-500'
 			>
 				Share
 			</Button>

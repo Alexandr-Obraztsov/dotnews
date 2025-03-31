@@ -62,13 +62,12 @@ export const Digest = (digest: DigestType) => {
 					{digest.channels.length > 0 ? (
 						digest.channels.map(channel => (
 							<Image
-								priority
 								src={channel.imageUrl}
-								alt={channel.title}
+								alt={''}
 								key={channel.id}
 								width={32}
 								height={32}
-								className='border border-foreground ml-[-12px] first:ml-0 block rounded-full size-[40px] bg-background'
+								className='border-4 border-foreground ml-[-12px] first:ml-0 block rounded-full size-[40px] bg-background'
 							/>
 						))
 					) : (
