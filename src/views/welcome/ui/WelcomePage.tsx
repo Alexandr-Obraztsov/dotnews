@@ -47,8 +47,13 @@ export const WelcomePage = () => {
 	const router = useRouter()
 
 	const handleNext = () => {
-		if (stepNum === steps.length - 1) router.push(PATH.digests)
-		else setStepNum(prev => prev + 1)
+		if (stepNum >= steps.length - 1) router.push(PATH.digests)
+		else setStepNum(stepNum + 1)
+	}
+
+	const handlePrev = () => {
+		if (stepNum === 0) return
+		setStepNum(stepNum - 1)
 	}
 
 	const step = steps[stepNum]
@@ -66,7 +71,7 @@ export const WelcomePage = () => {
 		if (Math.abs(diff) > 50) {
 			setStartX(null)
 			if (diff < -50) handleNext()
-			if (diff > 50) setStepNum(prev => (prev > 0 ? prev - 1 : 0))
+			if (diff > 50) handlePrev()
 		}
 	}
 
@@ -93,8 +98,9 @@ export const WelcomePage = () => {
 						key={index}
 						className={cn(
 							'flex-1 h-[3px] rounded-full bg-stroke after:block after:content-[""] after:w-0 after:h-full after:bg-primary after:transition-[width] after:duration-[10000ms] after:ease-linear after:rounded-full',
-							index < stepNum ? 'after:transition-none' : '',
-							index <= stepNum && isLayoutHydrated ? 'after:w-full' : ''
+							index !== stepNum && 'after:transition-none after:w-0',
+							index < stepNum && 'bg-primary',
+							index === stepNum && isLayoutHydrated && 'after:w-full'
 						)}
 					/>
 				))}
