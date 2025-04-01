@@ -83,16 +83,16 @@ export const WelcomePage = () => {
 
 	return (
 		<div
-			className='w-full h-screen p-6 flex flex-col items-center justify-end'
+			className='w-full h-screen p-6 pt-4 flex flex-col items-center justify-end'
 			onTouchStart={handleTouchStart}
 			onTouchMove={handleTouchMove}
 		>
-			<div id='progress' className='top-0 flex flex-row gap-2 w-full'>
+			<div id='progress' className='top-0 flex flex-row gap-1 w-full'>
 				{steps.map((_, index) => (
 					<div
 						key={index}
 						className={cn(
-							'flex-1 h-1 rounded-full bg-stroke after:block after:content-[""] after:w-0 after:h-full after:bg-primary after:transition-[width] after:duration-[10000ms] after:ease-linear after:rounded-full',
+							'flex-1 h-[3px] rounded-full bg-stroke after:block after:content-[""] after:w-0 after:h-full after:bg-primary after:transition-[width] after:duration-[10000ms] after:ease-linear after:rounded-full',
 							index < stepNum ? 'after:transition-none' : '',
 							index <= stepNum && isLayoutHydrated ? 'after:w-full' : ''
 						)}
@@ -117,7 +117,7 @@ export const WelcomePage = () => {
 				variant='fulfilled'
 				onClick={handleNext}
 			>
-				Next
+				{stepNum === steps.length - 1 ? 'Get Started' : 'Next'}
 			</Button>
 		</div>
 	)
