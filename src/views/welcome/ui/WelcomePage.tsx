@@ -67,7 +67,6 @@ export const WelcomePage = () => {
 		const currentX = event.touches[0].clientX
 		const diff = currentX - startX
 
-		console.log(diff)
 		if (Math.abs(diff) > 50) {
 			setStartX(null)
 			if (diff < -50) handleNext()

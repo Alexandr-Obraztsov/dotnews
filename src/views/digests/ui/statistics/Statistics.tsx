@@ -26,10 +26,11 @@ export const Statistics = ({ digests }: Props) => {
 					<ConnectionSvg className='size-4' />
 				</div>
 				<span className='block mt-4 font-semibold leading-none text-2xl'>
-					{digests?.reduce(
-						(acc, digest) => acc + digest.channels.length,
-						0
-					) || <Skeleton />}
+					{digests ? (
+						digests.reduce((acc, digest) => acc + digest.channels.length, 0)
+					) : (
+						<Skeleton />
+					)}
 				</span>
 			</div>
 		</div>
