@@ -3,6 +3,7 @@
 import { useWebApp } from '@/app/hooks/useWebApp'
 import { useLoginMutation } from '@/features/login/api/loginApi'
 import { PATH } from '@/shared/model'
+import { Loading } from '@/shared/ui/loading/Loading'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
@@ -28,9 +29,5 @@ export const LoadingPage = () => {
 			})
 	}, [login, router, webApp])
 
-	return (
-		<main className='flex flex-col h-screen w-full justify-center items-center text-black'>
-			<span className='animate-spin rounded-full size-10 border-b-2 border-primary'></span>
-		</main>
-	)
+	return <Loading />
 }
