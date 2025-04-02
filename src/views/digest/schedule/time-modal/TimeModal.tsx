@@ -3,7 +3,7 @@ import { useUpdateDigestMutation } from '@/entities/digest/api/digestsApi'
 import { cn } from '@/shared/lib'
 import { Nullable } from '@/shared/model'
 import { Button, Modal } from '@/shared/ui'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Picker from 'react-mobile-picker'
 
 type Props = {
@@ -34,6 +34,14 @@ export const TimeModal = ({ open, close, digest }: Props) => {
 			.then(() => close())
 	}
 
+	useEffect(() => {
+		if (digest)
+			setDeliveryTime({
+				hour: digest.receptionTime.split(':')[0],
+				minute: digest.receptionTime.split(':')[1],
+			})
+	}, [digest])
+
 	return (
 		<Modal close={close} open={open}>
 			<div id='header' className='flex justify-between items-center pb-4'>
@@ -51,6 +59,7 @@ export const TimeModal = ({ open, close, digest }: Props) => {
 				value={deliveryTime}
 				onChange={setDeliveryTime}
 				wheelMode='natural'
+				height={170}
 				className='text-4xl flex gap-4 last-of-type:*:hidden'
 				itemHeight={40}
 			>
