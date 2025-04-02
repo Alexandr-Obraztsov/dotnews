@@ -3,10 +3,11 @@ import { Digest, encodeReceptionDays } from '@/entities/digest'
 import { useUpdateDigestMutation } from '@/entities/digest/api/digestsApi'
 import { decodeReceptionDays } from '@/entities/digest/lib/decodeReceptionDays'
 import { Nullable } from '@/shared/model'
-import { Modal } from '@/shared/ui'
 import Clock from 'public/icons/clock.svg'
 import { useEffect, useState } from 'react'
 import { ScheduleButton } from './schedule-button/ScheduleButton'
+import { TimeModal } from './time-modal/TimeModal'
+import Skeleton from 'react-loading-skeleton'
 
 type Props = {
 	digest: Nullable<Digest>
@@ -78,7 +79,9 @@ export const Schedule = ({ digest }: Props) => {
 			>
 				<Clock />
 				<span className='ml-2 text-base'>Delivery Time</span>
-				<span className='ml-auto text-accent font-medium'>9:00</span>
+				<span className='ml-auto text-accent font-medium'>
+					{digest ? digest.receptionTime.slice(0, -3) : <Skeleton />}
+				</span>
 			</div>
 
 			<div className='flex justify-between'>
@@ -92,9 +95,11 @@ export const Schedule = ({ digest }: Props) => {
 				))}
 			</div>
 
-			<Modal close={handleCloseDeliveryTime} open={isDeliveryTimeOpen}>
-				dfssd
-			</Modal>
+			<TimeModal
+				close={handleCloseDeliveryTime}
+				open={isDeliveryTimeOpen}
+				digest={digest}
+			/>
 		</div>
 	)
 }

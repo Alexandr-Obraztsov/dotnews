@@ -5,7 +5,7 @@ import React, { ButtonHTMLAttributes, ReactNode, useRef } from 'react'
 
 type Props = {
 	children: ReactNode
-	variant?: 'fulfilled' | 'error' | 'outline'
+	variant?: 'fulfilled' | 'error' | 'outline' | 'text'
 	sx?: ClassValue
 	href?: string
 	onClick?: () => void
@@ -59,6 +59,7 @@ export const Button = ({
 					'border-2 border-stroke text-accent border-dashed',
 				variant === 'error' &&
 					'border-2 border-red-foreground border-dashed text-red',
+				variant === 'text' && 'text-accent p-0 active:opacity-80',
 				sx
 			)}
 			{...props}

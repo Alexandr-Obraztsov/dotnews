@@ -3,7 +3,6 @@
 import { useWebApp } from '@/app/hooks/useWebApp'
 import { AddDigestButton } from './add-digest-button/AddDigestButton'
 import { MyDigests } from './my-digests/MyDigests'
-import { RecommendedDigests } from './recommended-digests/RecommendedDigests'
 import { useEffect } from 'react'
 import { useGetDigestsQuery } from '@/entities/digest/api/digestsApi'
 import { EmptyDigest } from './my-digests/empty-digest/EmptyDigest'
@@ -32,7 +31,6 @@ export const DigestsPage = () => {
 				<EmptyDigest />
 			)}
 			<ShareAppButton />
-			<RecommendedDigests />
 			<AddDigestButton />
 		</div>
 	)
