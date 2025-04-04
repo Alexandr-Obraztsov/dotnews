@@ -1,6 +1,7 @@
 import './globals.css'
 import { StoreProvider } from '@/app'
 import { ThemeProvider } from '@/app/providers/ThemeProvider'
+import { ToastProvider } from '@/app/providers/ToastProvider'
 import { Inter } from 'next/font/google'
 import { SkeletonTheme } from 'react-loading-skeleton'
 
@@ -25,7 +26,9 @@ export default function RootLayout({
 					highlightColor='var(--foreground)'
 				>
 					<ThemeProvider>
-						<StoreProvider>{children}</StoreProvider>
+						<StoreProvider>
+							<ToastProvider>{children}</ToastProvider>
+						</StoreProvider>
 					</ThemeProvider>
 				</SkeletonTheme>
 			</body>

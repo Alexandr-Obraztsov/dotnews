@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { baseApi } from '../api'
+import { rtkQueryErrorLogger } from '@/app/middleware/rtkQueryErrorLogger'
 
 export const store = configureStore({
 	reducer: {
@@ -7,7 +8,9 @@ export const store = configureStore({
 	},
 	devTools: process.env.NODE_ENV !== 'production',
 	middleware(getDefaultMiddleware) {
-		return getDefaultMiddleware().concat(baseApi.middleware)
+		return getDefaultMiddleware()
+			.concat(baseApi.middleware)
+			.concat(rtkQueryErrorLogger)
 	},
 })
 
