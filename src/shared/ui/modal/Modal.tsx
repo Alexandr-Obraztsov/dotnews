@@ -40,7 +40,7 @@ export const Modal = ({ children, close, open }: Props) => {
 			)}
 			onClick={handleClickOutside}
 		>
-			<div className='text-primary bg-foreground rounded-2xl p-6 transition-transform'>
+			<div className='text-primary bg-foreground rounded-2xl px-4 pt-3 pb-2  transition-transform'>
 				{children}
 			</div>
 		</div>,

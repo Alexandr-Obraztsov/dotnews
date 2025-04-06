@@ -21,7 +21,7 @@ export const DigestsPage = () => {
 	}, [webApp])
 
 	return (
-		<div className='w-full flex flex-col text-primary p-[27px_16px]'>
+		<div className='w-full flex flex-col text-primary p-4'>
 			{digests?.length || isLoading ? (
 				<>
 					<MyDigests digests={digests} />

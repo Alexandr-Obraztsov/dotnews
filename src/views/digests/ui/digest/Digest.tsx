@@ -68,7 +68,7 @@ export const Digest = (digest: DigestType) => {
 							/>
 						))
 					) : (
-						<div className='flex flex-row gap-2 items-center text-secondary text-sm leading-none'>
+						<div className='flex flex-row gap-2 items-center text-secondary text-sm leading-[30px]'>
 							<Empty />
 							Add channels
 						</div>

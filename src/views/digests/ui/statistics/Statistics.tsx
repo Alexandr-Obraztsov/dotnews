@@ -9,7 +9,7 @@ type Props = {
 
 export const Statistics = ({ digests }: Props) => {
 	return (
-		<div className='mt-4 flex flex-row gap-2'>
+		<div className='mt-3 flex flex-row gap-2'>
 			<div className='bg-accent-foreground dark:bg-[#1F2937] dark:!bg-opacity-50 rounded-xl text-accent flex-1 px-4 py-3'>
 				<div className='flex flex-row justify-between items-center text-xs leading-none'>
 					Total Digests

@@ -13,12 +13,12 @@ export const ShareAppButton = () => {
 	}
 
 	return (
-		<div className=' flex flex-row items-center mt-4 bg-linear px-4 py-3 text-white rounded-lg'>
+		<div className=' flex flex-row items-center mt-3 bg-linear px-4 py-5 text-white rounded-xl'>
 			<div className='flex items-center justify-center gap-2 rounded-full size-10 bg-gray-200 bg-opacity-25'>
-				<Share />
+				<Share className='size-5' />
 			</div>
-			<div className='flex flex-col items-start gap-[2px] ml-4'>
-				<h1 className='font-semibold text-lg text-white leading-none'>
+			<div className='flex flex-col items-start gap-1 ml-4'>
+				<h1 className='font-semibold text-base text-white leading-none'>
 					Share App
 				</h1>
 				<p className='text-gray-200 text-xs'>Invite your friends</p>
@@ -26,7 +26,7 @@ export const ShareAppButton = () => {
 			<Button
 				onClick={handleShare}
 				variant='fulfilled'
-				sx='ml-auto bg-white text-purple-700 leading-none p-[12px_20px]'
+				sx='ml-auto bg-white text-purple-700 leading-none p-[10px_20px] rounded-full'
 				effectSx='bg-purple-500'
 			>
 				Share

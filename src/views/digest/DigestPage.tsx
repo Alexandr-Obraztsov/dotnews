@@ -58,7 +58,7 @@ export const DigestPage = () => {
 	}
 
 	return (
-		<div className='p-4 bg-background flex flex-col gap-4'>
+		<div className='p-4 bg-background flex flex-col gap-3'>
 			<DigestHeader digest={digest} isLoading={isLoading} />
 			<Schedule digest={digest} />
 			<Button
@@ -66,7 +66,7 @@ export const DigestPage = () => {
 				sx='w-full flex justify-center items-center gap-2'
 				onClick={handleShareDigest}
 			>
-				<Share />
+				<Share className='size-4' />
 				Share Digest
 			</Button>
 			<Channels digest={digest} />

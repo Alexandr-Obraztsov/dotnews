@@ -5,8 +5,7 @@ import { ToastProvider } from '@/app/providers/ToastProvider'
 import { Inter } from 'next/font/google'
 import { SkeletonTheme } from 'react-loading-skeleton'
 
-const inter = Inter({
-	variable: '--font-geist-sans',
+const roboto = Inter({
 	subsets: ['latin'],
 })
 
@@ -16,11 +15,11 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang='ru'>
+		<html>
 			<head>
 				<title>My TMA App</title>
 			</head>
-			<body className={`${inter.className} antialiased`}>
+			<body className={`${roboto.className} antialiased`}>
 				<SkeletonTheme
 					baseColor='var(--background)'
 					highlightColor='var(--foreground)'

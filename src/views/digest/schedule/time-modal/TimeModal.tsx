@@ -44,7 +44,7 @@ export const TimeModal = ({ open, close, digest }: Props) => {
 
 	return (
 		<Modal close={close} open={open}>
-			<div id='header' className='flex justify-between items-center pb-4'>
+			<div id='header' className='flex justify-between items-center pb-2'>
 				<Button variant='text' sx='text-secondary' onClick={close}>
 					Cancel
 				</Button>
@@ -60,7 +60,7 @@ export const TimeModal = ({ open, close, digest }: Props) => {
 				onChange={setDeliveryTime}
 				wheelMode='natural'
 				height={170}
-				className='text-4xl flex gap-4 last-of-type:*:hidden'
+				className='text-3xl flex gap-2 last-of-type:*:hidden'
 				itemHeight={40}
 			>
 				<Picker.Column key={'hour'} name={'hour'} className='!grow-0'>
