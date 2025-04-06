@@ -3,7 +3,6 @@
 import { useParams, useRouter } from 'next/navigation'
 import { Channels } from './channels/Channels'
 import { Button, DigestHeader } from '@/shared/ui'
-import Share from 'public/icons/share.svg'
 import Trash from 'public/icons/trash.svg'
 import { Schedule } from './schedule/Schedule'
 import {
@@ -14,6 +13,7 @@ import {
 import { PATH } from '@/shared/model'
 import { toast } from 'react-toastify'
 import { useWebApp } from '@/app/hooks/useWebApp'
+import { ShareButton } from './share-button/ShareButton'
 
 export const DigestPage = () => {
 	const params = useParams()
@@ -31,11 +31,17 @@ export const DigestPage = () => {
 	const [shareDigest] = useShareDigestMutation()
 
 	const handleDeleteDigest = () => {
-		deleteDigest({ id: digest!.id })
-			.unwrap()
-			.then(() => {
-				router.push(PATH.digests)
-			})
+		webApp!.showConfirm(
+			'Are you sure you want to delete this digest?',
+			confirmed => {
+				if (!confirmed) return
+				deleteDigest({ id: digest!.id })
+					.unwrap()
+					.then(() => {
+						router.push(PATH.digests)
+					})
+			}
+		)
 	}
 
 	const handleShareDigest = () => {
@@ -58,21 +64,14 @@ export const DigestPage = () => {
 	}
 
 	return (
-		<div className='p-4 bg-background flex flex-col gap-3'>
+		<div className='p-4 bg-background flex flex-col'>
 			<DigestHeader digest={digest} isLoading={isLoading} />
 			<Schedule digest={digest} />
-			<Button
-				variant='fulfilled'
-				sx='w-full flex justify-center items-center gap-2'
-				onClick={handleShareDigest}
-			>
-				<Share className='size-4' />
-				Share Digest
-			</Button>
+			<ShareButton onClick={handleShareDigest} />
 			<Channels digest={digest} />
 			<Button
 				variant='error'
-				sx='w-full flex justify-center items-center gap-2'
+				sx='mt-3 w-full flex justify-center items-center gap-2'
 				onClick={handleDeleteDigest}
 			>
 				<Trash />

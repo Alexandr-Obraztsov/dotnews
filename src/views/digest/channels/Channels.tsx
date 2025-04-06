@@ -39,7 +39,7 @@ export const Channels = ({ digest }: Props) => {
 	}
 
 	return (
-		<div className='bg-foreground px-4 py-3 shadow-sm rounded-lg'>
+		<div className='mt-3 bg-foreground px-4 py-3 shadow-sm rounded-lg'>
 			<h2 className='text-xs text-secondary'>Channels</h2>
 			<Link href={PATH.searchChannels.replace(':id', digest?.id || '')}>
 				<Button

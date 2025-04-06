@@ -16,12 +16,15 @@ export const Digest = (digest: DigestType) => {
 			className='block w-full bg-foreground p-4 border border-stroke shadow-[0_1px_2px_rgba(0,0,0,0.05)] dark:border-none rounded-xl'
 		>
 			<div className='flex flex-row justify-between items-center'>
-				<h2 id='title' className='text-base font-medium text-primary'>
+				<h2
+					id='title'
+					className='w-0 flex-1 text-base font-medium text-primary overflow-hidden text-wrap text-ellipsis'
+				>
 					{digest.name}
 				</h2>
 				<div
 					id='time'
-					className='flex flex-row items-center gap-1 text-secondary text-xs leading-none'
+					className='pl-3 flex flex-row items-center gap-1 text-secondary text-xs leading-none'
 				>
 					<span
 						className={cn(

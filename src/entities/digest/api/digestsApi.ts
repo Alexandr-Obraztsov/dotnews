@@ -57,6 +57,10 @@ export const digestsApi = baseApi.injectEndpoints({
 						{ id: queryArgument.digestId },
 						draft => {
 							if (queryArgument.name) draft.name = queryArgument.name
+							else if (queryArgument.receptionTime)
+								draft.receptionTime = queryArgument.receptionTime
+							else if (queryArgument.receptionDaysEncoded)
+								draft.receptionDaysEncoded = queryArgument.receptionDaysEncoded
 						}
 					)
 				)

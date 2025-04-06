@@ -17,7 +17,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
 		return (
 			<div
 				className={cn(
-					'bg-foreground p-4 border border-stroke rounded-lg flex items-center text-secondary gap-3',
+					'bg-foreground px-4 py-3 border border-stroke rounded-lg flex items-center text-secondary gap-3',
 					sx
 				)}
 			>

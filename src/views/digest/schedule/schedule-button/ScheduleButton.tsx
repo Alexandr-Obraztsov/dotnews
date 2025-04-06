@@ -25,7 +25,7 @@ export const ScheduleButton = ({ day, isActive, onClick }: Props) => {
 		<button
 			onClick={handleClick}
 			className={cn(
-				'relative overflow-hidden size-8 text-xs rounded-full font-medium !bg-opacity-15 bg-gray-500 flex items-center justify-center transition-all duration-300',
+				'relative overflow-hidden size-10 text-sm rounded-full font-medium !bg-opacity-15 bg-gray-500 flex items-center justify-center transition-all duration-300',
 				isActive ? 'text-accent dark:text-white' : 'text-secondary'
 			)}
 		>
