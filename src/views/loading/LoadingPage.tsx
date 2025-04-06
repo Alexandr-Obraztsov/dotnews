@@ -6,6 +6,7 @@ import { PATH } from '@/shared/model'
 import { Loading } from '@/shared/ui/loading/Loading'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 export const LoadingPage = () => {
 	const [login] = useLoginMutation()
@@ -31,6 +32,7 @@ export const LoadingPage = () => {
 					router.push(PATH.digests)
 				}
 			})
+			.catch(() => toast.error('Error while logging in'))
 	}, [login, router, webApp])
 
 	return <Loading />

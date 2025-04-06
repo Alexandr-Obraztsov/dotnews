@@ -70,22 +70,22 @@ export const Schedule = ({ digest }: Props) => {
 	}, [webApp, timer, digest, receptionDays, updateDigest])
 
 	return (
-		<div className='rounded-lg bg-foreground p-4 flex flex-col gap-4 shadow-sm'>
-			<h2 className='text-[14px] text-secondary'>Schedule</h2>
+		<div className='rounded-lg bg-foreground px-4 py-3 flex flex-col gap-2 shadow-sm'>
+			<h2 className='text-xs text-secondary'>Schedule</h2>
 
 			<div
-				className='flex items-center text-primary'
+				className='flex items-center text-primary mt-1 cursor-pointer'
 				onClick={handleClickDeliveryTime}
 			>
 				<Clock />
-				<span className='ml-2 text-base'>Delivery Time</span>
+				<span className='ml-2 text-sm'>Delivery Time</span>
 				<span className='ml-auto text-accent font-medium'>
 					{digest ? digest.receptionTime.slice(0, -3) : <Skeleton />}
 				</span>
 			</div>
 
-			<div className='flex justify-between'>
-				{['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, i) => (
+			<div className='flex gap-2 mx-auto'>
+				{['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].map((day, i) => (
 					<ScheduleButton
 						key={day}
 						day={day}

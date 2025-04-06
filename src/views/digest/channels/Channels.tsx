@@ -39,12 +39,12 @@ export const Channels = ({ digest }: Props) => {
 	}
 
 	return (
-		<div className='bg-foreground p-4 shadow-sm rounded-lg'>
-			<h2 className='text-[14px] text-secondary'>Channels</h2>
+		<div className='bg-foreground px-4 py-3 shadow-sm rounded-lg'>
+			<h2 className='text-xs text-secondary'>Channels</h2>
 			<Link href={PATH.searchChannels.replace(':id', digest?.id || '')}>
 				<Button
 					variant='outline'
-					sx='w-full mt-3 flex justify-center items-center gap-2'
+					sx='w-full mt-2 flex justify-center items-center gap-2'
 				>
 					<Plus />
 					Add Channel
@@ -52,7 +52,7 @@ export const Channels = ({ digest }: Props) => {
 			</Link>
 
 			{digest && digest.channels.length > 0 && (
-				<div className='mt-8 flex flex-col gap-4'>
+				<div className='mt-4 flex flex-col gap-1'>
 					{digest.channels.map(channel => (
 						<Channel
 							key={channel.id}

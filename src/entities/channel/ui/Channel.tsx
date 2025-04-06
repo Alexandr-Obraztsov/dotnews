@@ -12,11 +12,11 @@ export const Channel = ({ channel, additionalBtn }: Props) => {
 			<Image
 				src={channel.imageUrl}
 				alt={''}
-				width={40}
-				height={40}
+				width={30}
+				height={30}
 				className='rounded-full bg-stroke'
 			/>
-			<span className='block text-[16px] ml-3 text-primary text-nowrap w-0 flex-1 overflow-hidden text-ellipsis'>
+			<span className='block text-sm font-medium ml-3 text-primary text-nowrap w-0 flex-1 overflow-hidden text-ellipsis'>
 				{channel.title}
 			</span>
 			{additionalBtn}

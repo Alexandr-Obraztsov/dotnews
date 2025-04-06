@@ -130,6 +130,7 @@ export const digestsApi = baseApi.injectEndpoints({
 				method: 'POST',
 				body: arg,
 			}),
+			invalidatesTags: ['Digests'],
 		}),
 		deleteChannelFromDigest: build.mutation<
 			Digest,

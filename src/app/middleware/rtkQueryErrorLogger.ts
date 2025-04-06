@@ -8,9 +8,10 @@ import { toast } from 'react-toastify'
 export const rtkQueryErrorLogger: Middleware =
 	(api: MiddlewareAPI) => next => action => {
 		if (isRejectedWithValue(action)) {
-			const status = (action.payload as { status: string }).status
-			if (status === 'FETCH_ERROR') toast.error('Fetch error')
-			else toast.error(JSON.stringify(action))
+			const payload = action.payload as { status: string; detail: string }
+			if (payload.status === 'FETCH_ERROR') toast.error('Fetch error')
+			else if (payload.status === 'NETWORK_ERROR')
+				toast.error('No internet connection')
 		}
 
 		return next(action)

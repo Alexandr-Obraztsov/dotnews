@@ -13,13 +13,10 @@ export const Digest = (digest: DigestType) => {
 	return (
 		<Link
 			href={PATH.digest.replace(':id', digest.id)}
-			className='block w-full bg-foreground p-6 border border-stroke shadow-[0_1px_2px_rgba(0,0,0,0.05)] rounded-xl'
+			className='block w-full bg-foreground p-4 border border-stroke shadow-[0_1px_2px_rgba(0,0,0,0.05)] dark:border-none rounded-xl'
 		>
 			<div className='flex flex-row justify-between items-center'>
-				<h2
-					id='title'
-					className='text-lg font-medium text-primary leading-[21px]'
-				>
+				<h2 id='title' className='text-base font-medium text-primary'>
 					{digest.name}
 				</h2>
 				<div
@@ -41,7 +38,7 @@ export const Digest = (digest: DigestType) => {
 				</div>
 			</div>
 
-			<div id='schedule' className='mt-5 flex flex-row gap-[6px]'>
+			<div id='schedule' className='mt-3 flex flex-row gap-[6px]'>
 				{['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].map((day, i) => (
 					<span
 						key={day}
@@ -57,7 +54,7 @@ export const Digest = (digest: DigestType) => {
 				))}
 			</div>
 
-			<div className='mt-6 flex flex-row items-center justify-between'>
+			<div className='mt-3 flex flex-row items-center justify-between'>
 				<div className='flex flex-row'>
 					{digest.channels.length > 0 ? (
 						digest.channels.map(channel => (
