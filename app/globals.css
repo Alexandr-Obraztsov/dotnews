@@ -26,6 +26,7 @@ body {
 	color: var(--foreground);
 	background: var(--background);
 	font-family: Arial, Helvetica, sans-serif;
+	overflow-x: hidden;
 }
 
 body[data-theme='dark'] {
@@ -45,4 +46,19 @@ body[data-theme='dark'] {
 	--accent-foreground: #1e3a8a;
 
 	--linear: linear-gradient(to left, var(--accent) 0%, #6d28d9 100%);
+}
+
+html,
+body {
+	overscroll-behavior-y: contain;
+	height: -webkit-fill-available;
+	min-height: 100%;
+}
+
+html {
+	overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+	display: none;
 }

@@ -71,7 +71,7 @@ export const DigestPage = () => {
 			<Channels digest={digest} />
 			<Button
 				variant='error'
-				sx='mt-3 w-full flex justify-center items-center gap-2'
+				sx='mt-3 w-full flex justify-center items-center gap-2 pb-4'
 				onClick={handleDeleteDigest}
 			>
 				<Trash />
