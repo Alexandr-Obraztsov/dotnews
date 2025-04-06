@@ -20,6 +20,7 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
 			window.document.body.dataset.theme = webApp.colorScheme
 		}
 
+		webApp.safeAreaInset.top = 0
 		handleThemeChange()
 		webApp.onEvent('themeChanged', () => {
 			handleThemeChange()
