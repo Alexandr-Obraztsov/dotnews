@@ -15,7 +15,7 @@ export const ToastProvider = ({ children }: PropsWithChildren) => {
 				rtl={false}
 				pauseOnFocusLoss={false}
 				draggable={true}
-				draggablePercent={40}
+				draggablePercent={20}
 				pauseOnHover={false}
 				transition={Bounce}
 				className='p-4 gap-2'
