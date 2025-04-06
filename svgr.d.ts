@@ -1,6 +1,6 @@
 declare module '*.svg' {
-	import React from 'react'
-	const SVG: React.VFC<React.SVGProps<SVGSVGElement>>
+	import React, { HTMLProps } from 'react'
+	const SVG: React.FC<HTMLProps<HTMLDivElement>>
 	export default SVG
 }
 

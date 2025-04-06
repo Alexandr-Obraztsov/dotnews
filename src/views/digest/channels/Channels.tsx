@@ -4,10 +4,10 @@ import Plus from 'public/icons/plus.svg'
 import { useState } from 'react'
 import { ChannelModal } from './channel-modal/ChannelModal'
 import { Digest } from '@/entities/digest'
-import { Channel as ChannelType } from '@/entities/channel'
+import { Channel, ChannelType } from '@/entities/channel'
 import { useDeleteChannelFromDigestMutation } from '@/entities/digest/api/digestsApi'
-import { Channel } from './channel/Channel'
 import Link from 'next/link'
+import More from 'public/icons/more.svg'
 
 type Props = {
 	digest: Nullable<Digest>
@@ -57,7 +57,14 @@ export const Channels = ({ digest }: Props) => {
 						<Channel
 							key={channel.id}
 							channel={channel}
-							onClickMore={handleClickChannelMore(channel)}
+							additionalBtn={
+								<button
+									className='ml-auto text-secondary p-3 flex-shrink-0'
+									onClick={handleClickChannelMore(channel)}
+								>
+									<More />
+								</button>
+							}
 						/>
 					))}
 				</div>

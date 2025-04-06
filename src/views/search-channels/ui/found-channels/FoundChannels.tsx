@@ -1,5 +1,4 @@
-import { Channel as ChannelType } from '@/entities/channel'
-import { Channel } from './channel/Channel'
+import { Channel, ChannelType } from '@/entities/channel'
 import { LoadingChannel } from './loadingChannel/LoadingChannel'
 import { Digest } from '@/entities/digest'
 import { Nullable } from '@/shared/model'
@@ -7,6 +6,7 @@ import {
 	useAddChannelToDigestMutation,
 	useDeleteChannelFromDigestMutation,
 } from '@/entities/digest/api/digestsApi'
+import { cn } from '@/shared/lib'
 
 type Props = {
 	channels: Nullable<ChannelType[]>
@@ -35,9 +35,20 @@ export const FoundChannels = ({ channels, isLoading, digest }: Props) => {
 					channels?.map(channel => (
 						<Channel
 							key={channel.id}
-							onClick={handleClickChannel(channel)}
 							channel={channel}
-							added={isChannelAdded(channel)}
+							additionalBtn={
+								<button
+									onClick={handleClickChannel(channel)}
+									className={cn(
+										isChannelAdded(channel)
+											? 'bg-red-foreground text-red'
+											: 'bg-accent-foreground text-accent dark:bg-accent dark:text-white',
+										'ml-auto shrink-0 min-w-20 p-[8px_16px] !bg-opacity-25 rounded-full font-medium text-sm'
+									)}
+								>
+									{isChannelAdded(channel) ? 'Delete' : 'Add'}
+								</button>
+							}
 						/>
 					))
 				) : (

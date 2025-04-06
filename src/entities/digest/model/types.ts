@@ -1,4 +1,4 @@
-import { Channel } from '@/entities/channel'
+import { ChannelType } from '@/entities/channel'
 
 export type Digest = {
 	id: string
@@ -10,7 +10,7 @@ export type Digest = {
 	createdAt: string
 	updatedAt: string
 	userId: string
-	channels: Channel[]
+	channels: ChannelType[]
 }
 
 export type DigestIdRequest = {
@@ -40,4 +40,25 @@ export type AddChannelToDigestRequest = {
 export type DeleteChannelFromDigestRequest = {
 	digestId: string
 	channelId: string
+}
+
+export type ShareDigestRequest = {
+	templateId: string
+}
+
+export type AddSharedDigestRequest = {
+	sharedDigestId: string
+	receptionDaysEncoded?: string
+	iconName?: string
+	receptionTime?: string
+}
+
+export type SharedDigest = {
+	id: string
+	name: string
+	createdAt: string
+	iconName: string
+	receptionDaysEncoded: string
+	receptionTime: string
+	channels: ChannelType[]
 }

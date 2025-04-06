@@ -9,13 +9,17 @@ import { Schedule } from './schedule/Schedule'
 import {
 	useDeleteDigestMutation,
 	useGetDigestByIdQuery,
+	useShareDigestMutation,
 } from '@/entities/digest/api/digestsApi'
 import { PATH } from '@/shared/model'
+import { toast } from 'react-toastify'
+import { useWebApp } from '@/app/hooks/useWebApp'
 
 export const DigestPage = () => {
 	const params = useParams()
 	const id = params.id as string
 	const router = useRouter()
+	const webApp = useWebApp()
 
 	const { data: digest = null, isLoading } = useGetDigestByIdQuery(
 		{ id },
@@ -24,6 +28,7 @@ export const DigestPage = () => {
 		}
 	)
 	const [deleteDigest] = useDeleteDigestMutation()
+	const [shareDigest] = useShareDigestMutation()
 
 	const handleDeleteDigest = () => {
 		deleteDigest({ id: digest!.id })
@@ -33,6 +38,25 @@ export const DigestPage = () => {
 			})
 	}
 
+	const handleShareDigest = () => {
+		if (!digest) return
+		const promise = shareDigest({ templateId: digest.id }).unwrap()
+		toast.promise(promise, {
+			pending: 'Creating shared digest',
+			success: 'Digest is shared',
+			error: 'Error while sharing digest',
+		})
+		promise.then(sharedDigest => {
+			const url = `https://t.me/${process.env.NEXT_PUBLIC_BOT_NAME}?startapp=${sharedDigest.id}`
+			const text = '🔥 Мой дайджест уже здесь!'
+			webApp?.openTelegramLink(
+				`https://t.me/share/url?url=${encodeURIComponent(
+					url
+				)}&text=${encodeURIComponent(text)}`
+			)
+		})
+	}
+
 	return (
 		<div className='p-4 bg-background flex flex-col gap-4'>
 			<DigestHeader digest={digest} isLoading={isLoading} />
@@ -40,6 +64,7 @@ export const DigestPage = () => {
 			<Button
 				variant='fulfilled'
 				sx='w-full flex justify-center items-center gap-2'
+				onClick={handleShareDigest}
 			>
 				<Share />
 				Share Digest

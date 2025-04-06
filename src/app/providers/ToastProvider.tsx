@@ -7,7 +7,7 @@ export const ToastProvider = ({ children }: PropsWithChildren) => {
 	return (
 		<>
 			<ToastContainer
-				position='top-center'
+				position='bottom-center'
 				autoClose={5000}
 				hideProgressBar={false}
 				newestOnTop={false}
@@ -19,7 +19,7 @@ export const ToastProvider = ({ children }: PropsWithChildren) => {
 				pauseOnHover={false}
 				transition={Bounce}
 				className='p-4 gap-2'
-				toastClassName='bg-foreground rounded-sm text-primary'
+				toastClassName='bg-foreground rounded-sm text-primary select-none cursor-pointer'
 				closeButton={false}
 			/>
 			{children}

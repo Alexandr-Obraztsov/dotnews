@@ -1,4 +1,4 @@
-export type Channel = {
+export type ChannelType = {
 	id: string
 	telegramName: string
 	title: string

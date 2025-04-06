@@ -79,11 +79,5 @@ export const Button = ({
 		</button>
 	)
 
-	return href ? (
-		<Link href={href} onClick={handleClick}>
-			{button}
-		</Link>
-	) : (
-		button
-	)
+	return href ? <Link href={href}>{button}</Link> : button
 }

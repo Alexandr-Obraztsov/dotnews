@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 import box from 'public/animations/box.json'
 import newspaper from 'public/animations/newspaper.json'
 import phone from 'public/animations/phone.json'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 const Lottie = dynamic(() => import('lottie-react'), {
 	ssr: false,
@@ -46,10 +46,10 @@ export const WelcomePage = () => {
 	const [isLayoutHydrated, setIsLayoutHydrated] = useState(false)
 	const router = useRouter()
 
-	const handleNext = () => {
+	const handleNext = useCallback(() => {
 		if (stepNum >= steps.length - 1) router.push(PATH.digests)
 		else setStepNum(stepNum + 1)
-	}
+	}, [router, setStepNum, stepNum])
 
 	const handlePrev = () => {
 		if (stepNum === 0) return
@@ -79,7 +79,7 @@ export const WelcomePage = () => {
 			handleNext()
 		}, 10000)
 		return () => clearTimeout(timer)
-	}, [stepNum])
+	}, [stepNum, handleNext])
 
 	useEffect(() => {
 		setIsLayoutHydrated(true)

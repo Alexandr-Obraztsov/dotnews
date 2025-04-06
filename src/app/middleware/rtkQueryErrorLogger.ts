@@ -8,7 +8,9 @@ import { toast } from 'react-toastify'
 export const rtkQueryErrorLogger: Middleware =
 	(api: MiddlewareAPI) => next => action => {
 		if (isRejectedWithValue(action)) {
-			toast.error('Something went wrong')
+			const status = (action.payload as { status: string }).status
+			if (status === 'FETCH_ERROR') toast.error('Fetch error')
+			else toast.error(JSON.stringify(action))
 		}
 
 		return next(action)

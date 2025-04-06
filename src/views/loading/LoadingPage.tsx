@@ -21,7 +21,11 @@ export const LoadingPage = () => {
 		login({ timeZoneId: Intl.DateTimeFormat().resolvedOptions().timeZone })
 			.unwrap()
 			.then(data => {
-				if (!data.firstLogin) {
+				if (webApp.initDataUnsafe.start_param)
+					router.push(
+						PATH.sharedDigest.replace(':id', webApp.initDataUnsafe.start_param)
+					)
+				else if (!data.firstLogin) {
 					router.push(PATH.welcome)
 				} else {
 					router.push(PATH.digests)

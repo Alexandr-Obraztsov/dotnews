@@ -1,13 +1,16 @@
 import { baseApi } from '@/shared/api'
 import {
 	AddChannelToDigestRequest,
+	AddSharedDigestRequest,
 	CreateDigestRequest,
 	DeleteChannelFromDigestRequest,
 	Digest,
 	DigestIdRequest,
+	SharedDigest,
+	ShareDigestRequest,
 	UpdateDigestRequest,
 } from '../model/types'
-import { Channel } from '@/entities/channel'
+import { ChannelType } from '@/entities/channel'
 
 export const digestsApi = baseApi.injectEndpoints({
 	endpoints: build => ({
@@ -32,6 +35,12 @@ export const digestsApi = baseApi.injectEndpoints({
 				url: `/digests/${arg.id}`,
 			}),
 			providesTags: ['Digests'],
+		}),
+
+		getSharedDigest: build.query<SharedDigest, DigestIdRequest>({
+			query: arg => ({
+				url: `/shared-digests/${arg.id}`,
+			}),
 		}),
 
 		updateDigest: build.mutation<Digest, UpdateDigestRequest>({
@@ -94,7 +103,9 @@ export const digestsApi = baseApi.injectEndpoints({
 						'getDigestById',
 						{ id: arg.digestId },
 						draft => {
-							draft.channels.push({ telegramName: arg.channelName } as Channel)
+							draft.channels.push({
+								telegramName: arg.channelName,
+							} as ChannelType)
 						}
 					)
 				)
@@ -106,7 +117,20 @@ export const digestsApi = baseApi.injectEndpoints({
 			},
 			invalidatesTags: ['Digests'],
 		}),
-
+		shareDigest: build.mutation<SharedDigest, ShareDigestRequest>({
+			query: arg => ({
+				url: `/shared-digests`,
+				method: 'POST',
+				body: arg,
+			}),
+		}),
+		addSharedDigest: build.mutation<void, AddSharedDigestRequest>({
+			query: arg => ({
+				url: `/shared-digests/add-to-my/${arg.sharedDigestId}`,
+				method: 'POST',
+				body: arg,
+			}),
+		}),
 		deleteChannelFromDigest: build.mutation<
 			Digest,
 			DeleteChannelFromDigestRequest
@@ -122,7 +146,9 @@ export const digestsApi = baseApi.injectEndpoints({
 						{ id: arg.digestId },
 						draft => {
 							draft.channels.splice(
-								draft.channels.findIndex(item => item.id === arg.channelId),
+								draft.channels.findIndex(
+									(item: ChannelType) => item.id === arg.channelId
+								),
 								1
 							)
 						}
@@ -147,4 +173,7 @@ export const {
 	useDeleteDigestMutation,
 	useAddChannelToDigestMutation,
 	useDeleteChannelFromDigestMutation,
+	useShareDigestMutation,
+	useGetSharedDigestQuery,
+	useAddSharedDigestMutation,
 } = digestsApi

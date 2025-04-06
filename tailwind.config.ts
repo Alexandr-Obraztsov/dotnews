@@ -26,6 +26,7 @@ export default {
 				up: 'animate-up 0.2s ease-out forwards',
 				down: 'animate-down 0.2s ease-out forwards',
 				fade: 'animate-fade 0.2s ease-out forwards',
+				spin: 'spin 1.5s linear infinite',
 				'fade-out': 'animate-fade-out 0.2s ease-out',
 			},
 			keyframes: {

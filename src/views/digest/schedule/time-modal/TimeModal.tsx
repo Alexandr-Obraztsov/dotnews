@@ -69,8 +69,8 @@ export const TimeModal = ({ open, close, digest }: Props) => {
 							key={option}
 							value={option}
 							className={cn(
-								'text-secondary font-light',
-								option === deliveryTime.hour && 'text-white'
+								'text-secondary font-light cursor-pointer',
+								option === deliveryTime.hour && 'text-white font-normal'
 							)}
 						>
 							{option}
@@ -86,8 +86,8 @@ export const TimeModal = ({ open, close, digest }: Props) => {
 							key={option}
 							value={option}
 							className={cn(
-								'text-secondary font-light',
-								option === deliveryTime.minute && 'text-white'
+								'text-secondary font-light cursor-pointer',
+								option === deliveryTime.minute && 'text-white font-normal'
 							)}
 						>
 							{option}

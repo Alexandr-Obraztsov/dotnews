@@ -1,3 +1,6 @@
-import { Channel } from './model/types'
+import type { ChannelType } from './model/types'
+import { Channel } from './ui/Channel'
 
-export type { Channel }
+export type { ChannelType }
+
+export { Channel }
