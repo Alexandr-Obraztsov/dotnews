@@ -26,7 +26,7 @@ export const LoadingPage = () => {
 					router.push(
 						PATH.sharedDigest.replace(':id', webApp.initDataUnsafe.start_param)
 					)
-				else if (!data.firstLogin) {
+				else if (data.firstLogin) {
 					router.push(PATH.welcome)
 				} else {
 					router.push(PATH.digests)

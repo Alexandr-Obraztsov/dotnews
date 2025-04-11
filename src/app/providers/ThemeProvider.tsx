@@ -10,12 +10,11 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
 		if (!webApp) return
 
 		const handleThemeChange = () => {
-			webApp.setHeaderColor(
-				webApp.colorScheme === 'light' ? '#ffffff' : '#1f2937'
-			)
-			webApp.setBackgroundColor(
-				webApp.colorScheme === 'light' ? '#ffffff' : '#1f2937'
-			)
+			const themeColor = webApp.colorScheme === 'light' ? '#ffffff' : '#1f2937'
+
+			webApp.setHeaderColor(themeColor)
+			webApp.setBottomBarColor(themeColor)
+			webApp.setBackgroundColor(themeColor)
 
 			window.document.body.dataset.theme = webApp.colorScheme
 		}

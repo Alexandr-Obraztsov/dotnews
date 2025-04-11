@@ -8,12 +8,14 @@ import { Channel, ChannelType } from '@/entities/channel'
 import { useDeleteChannelFromDigestMutation } from '@/entities/digest/api/digestsApi'
 import Link from 'next/link'
 import More from 'public/icons/more.svg'
+import { useConfirmModal } from '@/shared/lib'
 
 type Props = {
 	digest: Nullable<Digest>
 }
 
 export const Channels = ({ digest }: Props) => {
+	const { View, showConfirm } = useConfirmModal()
 	const [activeChannel, setActiveChannel] =
 		useState<Nullable<ChannelType>>(null)
 	const [modalPosition, setModalPosition] = useState({
@@ -35,7 +37,13 @@ export const Channels = ({ digest }: Props) => {
 
 	const handleDeleteChannel = () => {
 		setActiveChannel(null)
-		deleteChannel({ channelId: activeChannel!.id, digestId: digest!.id })
+		showConfirm(
+			'Are you sure you want to delete this channel from digest? ',
+			confirmed => {
+				if (!confirmed) return
+				deleteChannel({ channelId: activeChannel!.id, digestId: digest!.id })
+			}
+		)
 	}
 
 	return (
@@ -75,6 +83,7 @@ export const Channels = ({ digest }: Props) => {
 				open={!!activeChannel}
 				onDelete={handleDeleteChannel}
 			/>
+			{View}
 		</div>
 	)
 }

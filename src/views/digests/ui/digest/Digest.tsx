@@ -60,16 +60,18 @@ export const Digest = (digest: DigestType) => {
 			<div className='mt-3 flex flex-row items-center justify-between'>
 				<div className='flex flex-row'>
 					{digest.channels.length > 0 ? (
-						digest.channels.map(channel => (
-							<Image
-								src={channel.imageUrl}
-								alt={''}
-								key={channel.id}
-								width={40}
-								height={40}
-								className='border-4 border-foreground ml-[-12px] first:ml-0 block rounded-full size-[40px] bg-background'
-							/>
-						))
+						digest.channels
+							.slice(0, 5)
+							.map(channel => (
+								<Image
+									src={channel.imageUrl}
+									alt={''}
+									key={channel.id}
+									width={40}
+									height={40}
+									className='border-4 border-foreground ml-[-12px] first:ml-0 block rounded-full size-[40px] bg-background'
+								/>
+							))
 					) : (
 						<div className='flex flex-row gap-2 items-center text-secondary text-sm leading-[30px]'>
 							<Empty />

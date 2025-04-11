@@ -1,15 +1,14 @@
-import { useWebApp } from '@/app/hooks/useWebApp'
+import { useShareMessage } from '@/shared/lib'
 import { Button } from '@/shared/ui'
 import Share from 'public/icons/share.svg'
 
 export const ShareAppButton = () => {
-	const webApp = useWebApp()
+	const shareMessage = useShareMessage()
 
 	const handleShare = () => {
 		const url = 'dotnews_mng_bot'
 		const text = 'Тестовый вариант для проверки'
-
-		webApp?.openTelegramLink(`https://t.me/share/url?url=${url}&text=${text}`)
+		shareMessage(url, text)
 	}
 
 	return (

@@ -4,9 +4,9 @@ import { IconButton } from '@/shared/ui/icon-button/IconButton'
 
 export const LoadingDigest = () => {
 	return (
-		<div className='w-full bg-foreground p-6 border border-stroke shadow-[0_1px_2px_rgba(0,0,0,0.05)] rounded-xl'>
-			<Skeleton containerClassName='block h-[21px]' height={21} width={'80%'} />
-			<div id='schedule' className='mt-5 flex flex-row gap-[6px]'>
+		<div className='w-full bg-foreground p-4 border border-stroke shadow-[0_1px_2px_rgba(0,0,0,0.05)] dark:border-none rounded-xl'>
+			<Skeleton containerClassName='block h-[24px]' height={16} width={'80%'} />
+			<div id='schedule' className='mt-3 flex flex-row gap-[6px]'>
 				{Array(7)
 					.fill(null)
 					.map((_, index) => (
@@ -20,24 +20,24 @@ export const LoadingDigest = () => {
 					))}
 			</div>
 
-			<div className='mt-6 flex flex-row items-center justify-between'>
+			<div className='mt-3 flex flex-row items-center justify-between'>
 				<div className='flex flex-row'>
 					<Skeleton
-						containerClassName='block size-[40px]'
-						width={40}
-						height={40}
+						containerClassName='block size-[36px]'
+						width={36}
+						height={36}
 						circle
 					/>
 					<Skeleton
-						containerClassName='block size-[40px] ml-[-12px]'
-						width={40}
-						height={40}
+						containerClassName='block size-[36px] ml-[-12px]'
+						width={36}
+						height={36}
 						circle
 					/>
 					<Skeleton
-						containerClassName='block size-[40px] ml-[-12px]'
-						width={40}
-						height={40}
+						containerClassName='block size-[36px] ml-[-12px]'
+						width={36}
+						height={36}
 						circle
 					/>
 				</div>

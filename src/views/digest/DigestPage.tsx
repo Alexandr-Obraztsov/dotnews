@@ -12,14 +12,16 @@ import {
 } from '@/entities/digest/api/digestsApi'
 import { PATH } from '@/shared/model'
 import { toast } from 'react-toastify'
-import { useWebApp } from '@/app/hooks/useWebApp'
 import { ShareButton } from './share-button/ShareButton'
+import { useConfirmModal, useShareMessage } from '@/shared/lib'
 
 export const DigestPage = () => {
 	const params = useParams()
 	const id = params.id as string
 	const router = useRouter()
-	const webApp = useWebApp()
+	const shareMessage = useShareMessage()
+
+	const { View, showConfirm } = useConfirmModal()
 
 	const { data: digest = null, isLoading } = useGetDigestByIdQuery(
 		{ id },
@@ -31,17 +33,14 @@ export const DigestPage = () => {
 	const [shareDigest] = useShareDigestMutation()
 
 	const handleDeleteDigest = () => {
-		webApp!.showConfirm(
-			'Are you sure you want to delete this digest?',
-			confirmed => {
-				if (!confirmed) return
-				deleteDigest({ id: digest!.id })
-					.unwrap()
-					.then(() => {
-						router.push(PATH.digests)
-					})
-			}
-		)
+		showConfirm('Are you sure you want to delete this digest?', confirmed => {
+			if (!confirmed) return
+			deleteDigest({ id: digest!.id })
+				.unwrap()
+				.then(() => {
+					router.push(PATH.digests)
+				})
+		})
 	}
 
 	const handleShareDigest = () => {
@@ -55,11 +54,7 @@ export const DigestPage = () => {
 		promise.then(sharedDigest => {
 			const url = `https://t.me/${process.env.NEXT_PUBLIC_BOT_NAME}?startapp=${sharedDigest.id}`
 			const text = '🔥 Мой дайджест уже здесь!'
-			webApp?.openTelegramLink(
-				`https://t.me/share/url?url=${encodeURIComponent(
-					url
-				)}&text=${encodeURIComponent(text)}`
-			)
+			shareMessage(url, text)
 		})
 	}
 
@@ -77,6 +72,7 @@ export const DigestPage = () => {
 				<Trash />
 				Delete Digest
 			</Button>
+			{View}
 		</div>
 	)
 }

@@ -21,9 +21,7 @@ export const MyDigests = ({ digests }: Props) => {
 
 	return (
 		<div>
-			<span className='text-primary text-lg font-bold tracking-wide'>
-				Digests
-			</span>
+			<h1 className='text-primary text-lg font-bold tracking-wide'>Digests</h1>
 			<div className='flex flex-col gap-3 mt-2'>
 				{digests?.length ? (
 					digests?.map(digest => <Digest key={digest.id} {...digest} />)
